@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista javascript</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <div>
+        <div class="header-dark">
+            <div class="container hero">
+                <div class="row">
+                    <div class="col-md-8 col-lg-9 offset-md-2">
+                        <h1 class="text-center">Lista Javascript</h1><h1 id="our-headline">creeaza ceva nou /da click pe ceva din lista pentru a modifica textul </h1>
+    <button type="button" class="btn btn-block btn-outline-primary" id="ourbutton">Creeaza</button>
+			
+			
+
+    <ul id="our-list">
+        <li>primul lucru</li>
+        <li>al doilea lucru</li>
+        <li>al treilea lucru</li>
+        <li>al patrulea lucru</li>
+        <li>al cincilea lucru</li>
+        <li>al saselea lucru</li>
+    </ul>
+    <script>
+    var listitems = document.getElementById("our-list").getElementsByTagName("li"); //punem toate elementele listei intr-o variabila
+var ourheadline = document.getElementById("our-headline");//variabila care ne duce la Heading 1
+var ourbutton = document.getElementById("ourbutton");//variabila care ne duce la button
+var ourlist =document.getElementById("our-list");
+var itemcounter = 1;
+     ourlist.addEventListener("click",activateItem);
+     let ourHTML= `<li> <button onclick="deleteitem(this)">delete</button></li>`  //this is a template literal 
+
+function activateItem(e) {
+    if(e.target.nodeName=="LI"){
+        { ourheadline.innerHTML = e.target.innerHTML;
+    for (i=0; i < e.target.parentNode.children.length; i++) 
+    { e.target.parentNode.children[i].classList.remove("active");}
+e.target.classList.add("active");}
+    }
+
+}//prin "this" ultimul event inregistrat va schimba htmlul variabilei ourheadline
+ourbutton.addEventListener("click",createnewitem);
+function createnewitem () {  ourlist.innerHTML += `<li>ceva nou `+ itemcounter + ` <button class="btn btn-secondary btn-sm" onclick="deleteitem(this)">delete</button> </li>`;
+itemcounter++;
+}
+
+function deleteitem(elementToDelete){
+    elementToDelete.parentElement.remove()    //parentElement we selected with THIS keyword is being removed
+}
+
+     
+    </script>
+    <style>
+        .active{
+            background-color: bisque;
+            font-size:30px;
+        }
+    </style></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
